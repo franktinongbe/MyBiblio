@@ -2,18 +2,14 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import axios from 'axios'
 
 function Home() {
-
-    const [books, setBooks] = useState([]); 
   
    
-    useEffect(() => {
-      fetch("https://books-api-ov9a.onrender.com/api-docs/") 
-      .then(response => response.json())
-      .then(data => setBooks(data))
-      .catch(err => console.log(err))
-    }, []);
+    axios.get('https://books-api-ov9a.onrender.com/api/books')
+    .then(response => {console.log(response.data)})
+    .catch(error => {console.log(error)})
 
   return (
     <>
@@ -25,12 +21,6 @@ function Home() {
         </h1>
 
 
-
-      <ul>
-        {books.map((list, index) => (
-          <li key = {index} >{list.id} | {list.title}</li>
-        ))}
-      </ul>
       
         <div className="text-danger">
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>

@@ -3,29 +3,23 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 import Navbar from "./components/partials/NavBar";
 import Footer from "./components/partials/Footer";
+import axios from 'axios'
 
 
 function App() {
-  const [books, setBooks] = useState([]); 
 
  
-  useEffect(() => {
-      fetch("https://books-api-ov9a.onrender.com/api-docs/") 
-      .then(response => response.json())
-      .then(data => setBooks(data))
-      .catch(err => console.log(err))
-    }, []);
-
+  axios.get('https://books-api-ov9a.onrender.com/api/books')
+  .then(response => {console.log(response.data)})
+  .catch(error => {console.log(error)})
   
 
   return (
     <Router>
       <Navbar />
-      <SiBar />
       <Routes>
-      <Route path="/Home" element={<Home books={books} />} />
-      <Route path="/Sign in" element={<Connexion />} />
-      <Route path="/Log in" element={<Inscription />} />
+      <Route path="/Home" element={<Home />} />
+
       </Routes>
       <Footer/>
     </Router>
