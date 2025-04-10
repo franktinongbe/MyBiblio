@@ -35,8 +35,8 @@ const Connexion = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100 bg-light">
-      <div className="card shadow-lg p-4 rounded" style={{ maxWidth: '400px', width: '100%' }}>
+    <div className="vh-100 vw-100 d-flex justify-content-center align-items-center bg-light shadow-lg">
+      <div className="card p-4 rounded" style={{ maxWidth: '400px', width: '100%' }}>
         <div className="card-body">
           <h2 className="card-title text-center mb-4">Connexion</h2>
           {error && <div className="alert alert-danger">{error}</div>}
@@ -68,7 +68,7 @@ const Connexion = () => {
             </div>
           </form>
           <div className="mt-3 text-center">
-            <p className="mb-0">Pas de compte? <a href="/Log in">S'inscrire</a></p>
+            <p className="mb-0">Pas de compte? <a href="/Sign in">S'inscrire</a></p>
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import App from "../App";
 import {
 	Container,
 	Row,
@@ -10,13 +9,13 @@ import {
 	Alert,
 } from "react-bootstrap";
 
-
 const Inscription = () => {
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
 		email: "",
 		phone: "",
+		password:"",
 		message: "",
 		subscription: false,
 	});
@@ -58,6 +57,7 @@ const Inscription = () => {
 				lastName: "",
 				email: "",
 				phone: "",
+				password:"",
 				message: "",
 				subscription: false,
 			});
@@ -74,7 +74,7 @@ const Inscription = () => {
 		<Container className="py-5">
 			<Row className="justify-content-center">
 				<Col md={10} lg={8}>
-					<Card className="shadow-sm border-0">
+					<Card className="shadow-lg border-0">
 						<Card.Header className="bg-primary text-white py-3">
 							<h2 className="h4 mb-0 text-center">Formulaire de contact</h2>
 						</Card.Header>
@@ -157,6 +157,21 @@ const Inscription = () => {
 												value={formData.phone}
 												onChange={handleChange}
 												placeholder="Entrez votre numéro de téléphone"
+												required
+											/>
+										</BootstrapForm.Group>
+									</Col>
+
+									<Col className="mb-3">
+										<BootstrapForm.Group controlId="password">
+											<BootstrapForm.Label>Mot de passe</BootstrapForm.Label>
+											<BootstrapForm.Control
+												type="password"
+												name="password"
+												value={formData.password}
+												onChange={handleChange}
+												placeholder="Entrez votre mot de passe"
+												required
 											/>
 										</BootstrapForm.Group>
 									</Col>
