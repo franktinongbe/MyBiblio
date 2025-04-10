@@ -20,7 +20,7 @@ function Home() {
         setBooks(response.data);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(() => {
         setError('Erreur de recuperation des livres');
         setLoading(false);
       });
@@ -44,7 +44,7 @@ function Home() {
         </div>
       )}
 
-      <div className="text-danger">
+      <div className="text">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>

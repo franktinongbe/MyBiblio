@@ -5,7 +5,6 @@ import Navbar from "./components/partials/NavBar";
 import Inscription from "./components/Inscription";
 import Footer from "./components/partials/Footer";
 import Connexion from "./components/Connexion";
-import Inscription from "./components/Inscription";
 
 
 function App() {
