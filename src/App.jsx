@@ -5,16 +5,10 @@ import Navbar from "./components/partials/NavBar";
 import Footer from "./components/partials/Footer";
 import Connexion from "./components/Connexion";
 import Inscription from "./components/Inscription";
-import axios from 'axios'
 
 
 function App() {
 
- 
-  axios.get('https://books-api-ov9a.onrender.com/api/books')
-  .then(response => {console.log(response.data)})
-  .catch(error => {console.log(error)})
-  
 
   return (
     <Router>

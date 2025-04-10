@@ -1,36 +1,33 @@
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap for styling
+import axios from 'axios'; // Import Axios for making HTTP requests
 
 const Connexion = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); // State to store error messages
+  const [email, setEmail] = useState(''); // State for storing email
+  const [password, setPassword] = useState(''); // State for storing password
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError('');
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
     try {
-      // Simuler un appel à une API de connexion (à remplacer plutard)
-      const response = await new Promise((resolve, reject) => {
-        setTimeout(() => {
-          if (email === 'test@example.com' && password === 'password') {
-            resolve({ success: true, message: 'Connexion réussie!' });
-
-            // Stocker le token et rediriger l'utilisateur
-          } else {
-            reject({ success: false, message: 'Email ou mot de passe incorrect.' });
-          }
-        }, 1000);
+      // Make the real API call here
+      const response = await axios.post('https://books-api-ov9a.onrender.com/api/auth/login', {
+        email, // Send email from state
+        password, // Send password from state
       });
 
-      console.log('Réponse de la connexion:', response);
-      if (response.success) {
-        alert(response.message);
-        // Redirection de l'utilisateur vers la page des livres/auteurs, etc.
-        // history.push('/livres');
+      // If registration is successful, show success message
+      if (response.status === 200) {
+        setError(''); // Clear any previous errors
+        localStorage.setItem('authToken', response.data.token); // Store the token in localStorage
+        // Redirect to Home page (or another page) after successful login
+        window.location.href = '/home';
       }
     } catch (err) {
-      setError(err.message || 'Erreur lors de la connexion.');
+      // If something goes wrong, show an error message in French
+      setError('Erreur lors de la connexion. Vérifiez vos identifiants et réessayez.');
     }
   };
 
@@ -39,7 +36,10 @@ const Connexion = () => {
       <div className="card p-4 rounded" style={{ maxWidth: '400px', width: '100%' }}>
         <div className="card-body">
           <h2 className="card-title text-center mb-4">Connexion</h2>
+          {/* Display error if any */}
           {error && <div className="alert alert-danger">{error}</div>}
+          
+          {/* Login form */}
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="email" className="form-label">Email</label>
@@ -48,8 +48,8 @@ const Connexion = () => {
                 className="form-control"
                 id="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                onChange={(e) => setEmail(e.target.value)} // Update email state when user types
+                required // Make this field required
               />
             </div>
             <div className="mb-3">
@@ -59,8 +59,8 @@ const Connexion = () => {
                 className="form-control"
                 id="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                onChange={(e) => setPassword(e.target.value)} // Update password state when user types
+                required // Make this field required
               />
             </div>
             <div className="d-grid">
