@@ -9,6 +9,7 @@ import {
 	Card,
 	Alert,
 } from "react-bootstrap";
+import './src/index.css'
 
 
 const Inscription = () => {
